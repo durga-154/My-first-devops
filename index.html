@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Today's Mood</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f2f2f2;
+      transition: background-color 0.5s;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .emojis, .feedback-icons {
+      font-size: 40px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+
+    .emojis:hover, .feedback-icons:hover {
+      transform: scale(1.2);
+    }
+
+    #message {
+      margin-top: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    #feedback {
+      margin-top: 30px;
+    }
+
+    #thanks {
+      margin-top: 10px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>How are you feeling today?</h1>
+
+  <div>
+    <span class="emojis" onclick="setMood('happy')">😊</span>
+    <span class="emojis" onclick="setMood('sad')">😢</span>
+    <span class="emojis" onclick="setMood('angry')">😠</span>
+    <span class="emojis" onclick="setMood('excited')">🤩</span>
+    <span class="emojis" onclick="setMood('calm')">😌</span>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="feedback">
+    <h2>Was this helpful?</h2>
+    <span class="feedback-icons" onclick="giveFeedback('like')">👍</span>
+    <span class="feedback-icons" onclick="giveFeedback('dislike')">👎</span>
+    <span class="feedback-icons" onclick="giveFeedback('star')">⭐</span>
+    <div id="thanks"></div>
+  </div>
+
+  <script>
+    function setMood(mood) {
+      const body = document.body;
+      const msg = document.getElementById("message");
+      const thanks = document.getElementById("thanks");
+      thanks.textContent = ""; 
+
+      let color, text;
+      switch (mood) {
+        case 'happy':
+          color = '#FFF176';
+          text = "You're in a good mood! 😊 Spread that joy by calling a friend!";
+          break;
+        case 'sad':
+          color = '#90CAF9';
+          text = "Feeling sad? 😢 Try journaling or watching a comforting movie.";
+          break;
+        case 'angry':
+          color = '#EF5350';
+          text = "Take a deep breath 😠 and go for a walk to clear your mind.";
+          break;
+        case 'excited':
+          color = '#FFD54F';
+          text = "You're excited! 🤩 Start that project you've been thinking about!";
+          break;
+        case 'calm':
+          color = '#A5D6A7';
+          text = "Stay calm 😌 and enjoy a cup of tea or some quiet time.";
+          break;
+      }
+
+      body.style.backgroundColor = color;
+      msg.textContent = text;
+    }
+
+    function giveFeedback(type) {
+      const thanks = document.getElementById("thanks");
+      if (type === "like") {
+        thanks.textContent = "Thank you for the 👍!";
+      } else if (type === "dislike") {
+        thanks.textContent = "Sorry to hear that 👎. We'll try to improve!";
+      } else if (type === "star") {
+        thanks.textContent = "⭐ Thanks for the star!";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
